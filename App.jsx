@@ -17,7 +17,7 @@ export default function OpenAIQueryApp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}` // Using the env variable
+          "Authorization": `Bearer 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`
         },
         body: JSON.stringify({
           model: "text-davinci-003", // or "gpt-3.5-turbo" for GPT-3.5
