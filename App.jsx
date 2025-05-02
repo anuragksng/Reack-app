@@ -14,8 +14,6 @@ export default function GeminiQueryApp() {
     setOutput("");
     try {
       const res = await fetch("https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyBtsIkOLVwCzbBZRUAVq9BSygfiLg_lDxg", {
-
-
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -25,11 +23,14 @@ export default function GeminiQueryApp() {
         })
       });
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error?.message || "Unknown error");
+      }
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
       setOutput(text);
     } catch (err) {
       console.error(err);
-      setOutput("Error fetching response.");
+      setOutput("Error: " + err.message);
     }
     setLoading(false);
   };
@@ -55,11 +56,11 @@ export default function GeminiQueryApp() {
 
       {/* Microsoft Clarity Script */}
       <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "rd3rpzte9x");
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "rd3rpzte9x");
     </script>
     </div>
   );
