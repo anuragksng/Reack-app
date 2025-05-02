@@ -13,7 +13,8 @@ export default function GeminiQueryApp() {
     setLoading(true);
     setOutput("");
     try {
-      const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBtsIkOLVwCzbBZRUAVq9BSygfiLg_lDxg", {
+      const res = await fetch("https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyBtsIkOLVwCzbBZRUAVq9BSygfiLg_lDxg", {
+
 
         method: "POST",
         headers: {
